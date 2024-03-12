@@ -1,0 +1,17 @@
+{
+    "name": "yasir/oop-opdrachten",
+    "require": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "OopOpdrachten\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "yasirradja1",
+            "email": "9019196@student.zadkine.nl"
+        }
+    ]
+}
