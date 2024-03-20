@@ -1,6 +1,9 @@
 <?php
-// Author: yasir
+namespace Login\classes\user;
+// Author: Amin
 
+use PDO;
+use PDOException;
 session_start();
 
 class User {
@@ -17,12 +20,12 @@ class User {
     }
 
     public function registerUser($username, $password, $role = 'gebruiker') {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
         $sql = "INSERT INTO users (username, password, role) VALUES (:username, :hashedPassword, :role)";
         $stmt = $this->db->prepare($sql);
         
         $stmt->bindValue(':username', $username);
-        $stmt->bindValue(':hashedPassword', $hashedPassword); // Bind the hashed password
+        $stmt->bindValue(':hashedPassword', $hashedPassword); 
         $stmt->bindValue(':role', $role);
 
         try {
@@ -45,7 +48,7 @@ class User {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $user['role'];
-            $this->username = $username; // Set the username property
+            $this->username = $username; 
             return true;
         } else {
             return false;
@@ -82,7 +85,7 @@ class User {
     }
 
     public function ShowUser() {
-        if (isset($this->username)) { // Check if username is set before showing it
+        if (isset($this->username)) { 
             echo "username: " . $this->username;
         } else {
             echo "No username set";
@@ -101,5 +104,3 @@ class User {
         exit;
     }  
 }
-
-?>
